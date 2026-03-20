@@ -31,11 +31,20 @@ plt.title('Distribution of tree heights in Vienna')
 plt.savefig('tree_height_histogram.png')
 
 # b) confusion matrix
+
 y_pred = model.predict(X_test)
 cm = confusion_matrix(y_test, y_pred, labels=top_species)
+# disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=top_species)
+# disp.plot(cmap=plt.cm.Blues)
+# plt.title('Species prediction confusion matrix')
+# plt.savefig('confusion_matrix.png')
+
+
+fig, ax = plt.subplots(figsize=(10, 10)) 
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=top_species)
-disp.plot(cmap=plt.cm.Blues)
+disp.plot(cmap=plt.cm.Blues, ax=ax, xticks_rotation=45)
 plt.title('Species prediction confusion matrix')
+plt.tight_layout()
 plt.savefig('confusion_matrix.png')
 
 print("experiment finished. Files 'tree_height_histogram.png' and 'confusion_matrix.png' generated.")
